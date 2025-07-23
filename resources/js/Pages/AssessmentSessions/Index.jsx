@@ -253,18 +253,24 @@ export default function Index({ assessmentSessions, filters }) {
                                 </div>
                                 <div className="flex space-x-2">
                                     {assessmentSessions.links.map((link, index) => (
-                                        <Link
-                                            key={index}
-                                            href={link.url}
-                                            className={`px-3 py-2 text-sm rounded-md ${
-                                                link.active
-                                                    ? 'bg-blue-600 text-white'
-                                                    : link.url
-                                                    ? 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300'
-                                                    : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                                            }`}
-                                            dangerouslySetInnerHTML={{ __html: link.label }}
-                                        />
+                                        link.url ? (
+                                            <Link
+                                                key={index}
+                                                href={link.url}
+                                                className={`px-3 py-2 text-sm rounded-md ${
+                                                    link.active
+                                                        ? 'bg-blue-600 text-white'
+                                                        : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300'
+                                                }`}
+                                                dangerouslySetInnerHTML={{ __html: link.label }}
+                                            />
+                                        ) : (
+                                            <span
+                                                key={index}
+                                                className="px-3 py-2 text-sm rounded-md bg-gray-100 text-gray-400 cursor-not-allowed"
+                                                dangerouslySetInnerHTML={{ __html: link.label }}
+                                            />
+                                        )
                                     ))}
                                 </div>
                             </div>

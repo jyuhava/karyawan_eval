@@ -67,56 +67,6 @@ export default function Sidebar({ isOpen, isCollapsed, toggleSidebar, toggleColl
                 </svg>
             ),
             current: url.startsWith('/assessment-sessions')
-        },
-        {
-            name: 'Absensi',
-            href: '/attendance',
-            icon: (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-            ),
-            current: url.startsWith('/attendance')
-        },
-        {
-            name: 'Cuti & Izin',
-            href: '/leave',
-            icon: (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-            ),
-            current: url.startsWith('/leave')
-        },
-        {
-            name: 'Payroll',
-            href: '/payroll',
-            icon: (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                </svg>
-            ),
-            current: url.startsWith('/payroll')
-        },
-        {
-            name: 'Rekrutmen',
-            href: '/recruitment',
-            icon: (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6" />
-                </svg>
-            ),
-            current: url.startsWith('/recruitment')
-        },
-        {
-            name: 'Laporan',
-            href: '/reports',
-            icon: (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-            ),
-            current: url.startsWith('/reports')
         }
     ];
 
@@ -140,8 +90,14 @@ export default function Sidebar({ isOpen, isCollapsed, toggleSidebar, toggleColl
                     {/* Logo */}
                     <div className="flex items-center justify-center h-16 px-4 bg-gray-800">
                         <Link href="/" className="flex items-center">
-                            <ApplicationLogo className="block h-8 w-auto fill-current text-white" />
-                            <span className="ml-2 text-xl font-bold text-white transition-opacity duration-300">HRD System</span>
+                            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
+                                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                                </svg>
+                            </div>
+                            {!isCollapsed && (
+                                <span className="ml-2 text-xl font-bold text-white transition-opacity duration-300">E-Valuation</span>
+                            )}
                         </Link>
                     </div>
 

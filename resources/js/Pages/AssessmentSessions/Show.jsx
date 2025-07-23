@@ -219,62 +219,113 @@ export default function Show({ assessmentSession }) {
                                                                     </div>
                                                                 </div>
 
-                                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ml-8">
-                                                                    <div>
-                                                                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                                                                            Nilai Angka {indicator.require_numeric_value && <span className="text-red-500">*</span>}
-                                                                        </label>
-                                                                        <input
-                                                                            type="number"
-                                                                            step="0.01"
-                                                                            value={results[indicator.id]?.numeric_value || ''}
-                                                                            onChange={(e) => handleResultChange(indicator.id, 'numeric_value', e.target.value)}
-                                                                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                                                            placeholder="0.00"
-                                                                            required={indicator.require_numeric_value}
-                                                                        />
-                                                                    </div>
+                                                                <div className="bg-blue-50 rounded-lg p-4 ml-8">
+                                                                    <h6 className="text-sm font-semibold text-blue-900 mb-4 flex items-center">
+                                                                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                                                                        </svg>
+                                                                        Form Penilaian
+                                                                    </h6>
+                                                                    
+                                                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                                                        {/* Nilai Numerik & Teks */}
+                                                                        <div className="space-y-4">
+                                                                            <div className="bg-white rounded-lg p-4 border border-blue-200">
+                                                                                <label className="block text-sm font-semibold text-gray-800 mb-2 flex items-center">
+                                                                                    <svg className="w-4 h-4 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+                                                                                    </svg>
+                                                                                    Nilai Angka 
+                                                                                    {indicator.require_numeric_value && <span className="text-red-500 ml-1">*</span>}
+                                                                                </label>
+                                                                                <input
+                                                                                    type="number"
+                                                                                    step="0.01"
+                                                                                    value={results[indicator.id]?.numeric_value || ''}
+                                                                                    onChange={(e) => handleResultChange(indicator.id, 'numeric_value', e.target.value)}
+                                                                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
+                                                                                        indicator.require_numeric_value ? 'border-blue-300 bg-blue-50' : 'border-gray-300 bg-white'
+                                                                                    }`}
+                                                                                    placeholder="Masukkan nilai angka (contoh: 85.5)"
+                                                                                    required={indicator.require_numeric_value}
+                                                                                />
+                                                                                {indicator.require_numeric_value && (
+                                                                                    <p className="text-xs text-blue-600 mt-1">Field ini wajib diisi</p>
+                                                                                )}
+                                                                            </div>
 
-                                                                    <div>
-                                                                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                                                                            Nilai Teks {indicator.require_text_value && <span className="text-red-500">*</span>}
-                                                                        </label>
-                                                                        <input
-                                                                            type="text"
-                                                                            value={results[indicator.id]?.text_value || ''}
-                                                                            onChange={(e) => handleResultChange(indicator.id, 'text_value', e.target.value)}
-                                                                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                                                            placeholder="Masukkan nilai teks"
-                                                                            required={indicator.require_text_value}
-                                                                        />
-                                                                    </div>
+                                                                            <div className="bg-white rounded-lg p-4 border border-blue-200">
+                                                                                <label className="block text-sm font-semibold text-gray-800 mb-2 flex items-center">
+                                                                                    <svg className="w-4 h-4 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h7" />
+                                                                                    </svg>
+                                                                                    Nilai Teks 
+                                                                                    {indicator.require_text_value && <span className="text-red-500 ml-1">*</span>}
+                                                                                </label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    value={results[indicator.id]?.text_value || ''}
+                                                                                    onChange={(e) => handleResultChange(indicator.id, 'text_value', e.target.value)}
+                                                                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
+                                                                                        indicator.require_text_value ? 'border-green-300 bg-green-50' : 'border-gray-300 bg-white'
+                                                                                    }`}
+                                                                                    placeholder="Masukkan nilai teks (contoh: Baik, Cukup, Kurang)"
+                                                                                    required={indicator.require_text_value}
+                                                                                />
+                                                                                {indicator.require_text_value && (
+                                                                                    <p className="text-xs text-green-600 mt-1">Field ini wajib diisi</p>
+                                                                                )}
+                                                                            </div>
+                                                                        </div>
 
-                                                                    <div className="md:col-span-2">
-                                                                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                                                                            Catatan {indicator.require_note && <span className="text-red-500">*</span>}
-                                                                        </label>
-                                                                        <textarea
-                                                                            rows={3}
-                                                                            value={results[indicator.id]?.note || ''}
-                                                                            onChange={(e) => handleResultChange(indicator.id, 'note', e.target.value)}
-                                                                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                                                            placeholder="Tambahkan catatan..."
-                                                                            required={indicator.require_note}
-                                                                        />
-                                                                    </div>
+                                                                        {/* Catatan & Rekomendasi */}
+                                                                        <div className="space-y-4">
+                                                                            <div className="bg-white rounded-lg p-4 border border-orange-200">
+                                                                                <label className="block text-sm font-semibold text-gray-800 mb-2 flex items-center">
+                                                                                    <svg className="w-4 h-4 mr-2 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                                                    </svg>
+                                                                                    Catatan 
+                                                                                    {indicator.require_note && <span className="text-red-500 ml-1">*</span>}
+                                                                                </label>
+                                                                                <textarea
+                                                                                    rows={4}
+                                                                                    value={results[indicator.id]?.note || ''}
+                                                                                    onChange={(e) => handleResultChange(indicator.id, 'note', e.target.value)}
+                                                                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none ${
+                                                                                        indicator.require_note ? 'border-orange-300 bg-orange-50' : 'border-gray-300 bg-white'
+                                                                                    }`}
+                                                                                    placeholder="Tambahkan catatan detail tentang penilaian ini..."
+                                                                                    required={indicator.require_note}
+                                                                                />
+                                                                                {indicator.require_note && (
+                                                                                    <p className="text-xs text-orange-600 mt-1">Field ini wajib diisi</p>
+                                                                                )}
+                                                                            </div>
 
-                                                                    <div className="md:col-span-2">
-                                                                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                                                                            Rekomendasi {indicator.require_recommendation && <span className="text-red-500">*</span>}
-                                                                        </label>
-                                                                        <textarea
-                                                                            rows={3}
-                                                                            value={results[indicator.id]?.recommendation || ''}
-                                                                            onChange={(e) => handleResultChange(indicator.id, 'recommendation', e.target.value)}
-                                                                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                                                            placeholder="Tambahkan rekomendasi..."
-                                                                            required={indicator.require_recommendation}
-                                                                        />
+                                                                            <div className="bg-white rounded-lg p-4 border border-purple-200">
+                                                                                <label className="block text-sm font-semibold text-gray-800 mb-2 flex items-center">
+                                                                                    <svg className="w-4 h-4 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                                                                    </svg>
+                                                                                    Rekomendasi 
+                                                                                    {indicator.require_recommendation && <span className="text-red-500 ml-1">*</span>}
+                                                                                </label>
+                                                                                <textarea
+                                                                                    rows={4}
+                                                                                    value={results[indicator.id]?.recommendation || ''}
+                                                                                    onChange={(e) => handleResultChange(indicator.id, 'recommendation', e.target.value)}
+                                                                                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none ${
+                                                                                        indicator.require_recommendation ? 'border-purple-300 bg-purple-50' : 'border-gray-300 bg-white'
+                                                                                    }`}
+                                                                                    placeholder="Berikan rekomendasi untuk perbaikan atau pengembangan..."
+                                                                                    required={indicator.require_recommendation}
+                                                                                />
+                                                                                {indicator.require_recommendation && (
+                                                                                    <p className="text-xs text-purple-600 mt-1">Field ini wajib diisi</p>
+                                                                                )}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
