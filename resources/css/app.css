@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Admin Dashboard Styles */
+@layer components {
+    /* Sidebar animations */
+    .sidebar-transition {
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    /* Custom scrollbar for sidebar */
+    .sidebar-scroll::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    .sidebar-scroll::-webkit-scrollbar-track {
+        background: #374151;
+    }
+    
+    .sidebar-scroll::-webkit-scrollbar-thumb {
+        background: #6B7280;
+        border-radius: 2px;
+    }
+    
+    .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+        background: #9CA3AF;
+    }
+    
+    /* Notification badge animation */
+    .notification-badge {
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.7;
+        }
+    }
+    
+    /* Card hover effects */
+    .admin-card {
+        transition: all 0.2s ease-in-out;
+    }
+    
+    .admin-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    /* Button hover effects */
+    .admin-button {
+        transition: all 0.2s ease-in-out;
+    }
+    
+    .admin-button:hover {
+        transform: translateY(-1px);
+    }
+    
+    /* Gradient backgrounds */
+    .gradient-blue {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .gradient-green {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+    
+    .gradient-purple {
+        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    }
+    
+    /* Loading spinner */
+    .spinner {
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+    
+    /* Smooth focus styles */
+    .focus-ring {
+        @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+    }
+    
+    /* Custom dropdown animations */
+    .dropdown-enter {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    
+    .dropdown-enter-active {
+        opacity: 1;
+        transform: scale(1);
+        transition: opacity 100ms ease-out, transform 100ms ease-out;
+    }
+    
+    .dropdown-exit {
+        opacity: 1;
+        transform: scale(1);
+    }
+    
+    .dropdown-exit-active {
+        opacity: 0;
+        transform: scale(0.95);
+        transition: opacity 75ms ease-in, transform 75ms ease-in;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .dark-mode {
+        @apply bg-gray-900 text-white;
+    }
+    
+    .dark-mode .bg-white {
+        @apply bg-gray-800;
+    }
+    
+    .dark-mode .text-gray-900 {
+        @apply text-gray-100;
+    }
+    
+    .dark-mode .text-gray-500 {
+        @apply text-gray-400;
+    }
+    
+    .dark-mode .border-gray-200 {
+        @apply border-gray-700;
+    }
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+    .mobile-padding {
+        @apply px-4;
+    }
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .print-only {
+        display: block !important;
+    }
+}
